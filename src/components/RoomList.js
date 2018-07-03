@@ -20,7 +20,7 @@ class RoomList extends Component {
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
-      //room.key = snapshot.key;
+      room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) });
     });
 
@@ -35,12 +35,14 @@ class RoomList extends Component {
 
   createRoom(event){
     event.preventDefault();
-    const newRoom= this.state.newRoomName;
     this.roomsRef.push({
       name: this.state.newRoomName
     });
     this.setState({ newRoomName: ''});
+  }
 
+  currentRoom(room) {
+    this.props.setActiveRoom(room);
   }
 
     render() {
@@ -48,7 +50,7 @@ class RoomList extends Component {
         <div>
           <div className= 'Rooms'>
           { this.state.rooms.map(( room, index ) =>
-            <li key={index}> {room.name} </li>
+            <li key={index} onClick={(event) => this.currentRoom(room, event)}> {room.name} </li>
           )}
           </div>
           <form className= "App--form" onSubmit={this.createRoom}>
