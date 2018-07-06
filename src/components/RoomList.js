@@ -42,6 +42,7 @@ class RoomList extends Component {
 
   currentRoom(room) {
     this.props.setActiveRoom(room);
+    console.log('room', room);
   }
 
     render() {
@@ -53,8 +54,11 @@ class RoomList extends Component {
           )}
           </div>
           <form className= "App--form" onSubmit={this.createRoom}>
-            <h4> Create a new Room below:</h4>
-            <input type="text" value={this.state.newRoomName} onChange={this.handleChange}/>
+            <input
+              type="text"
+              value={this.state.newRoomName}
+              placeholder= "New chat room"
+              onChange={this.handleChange}/>
             <input type="submit" />
           </form>
         </div>

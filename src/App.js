@@ -19,7 +19,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: '',
+      activeRoom: {},
       user: null
     }
 
@@ -47,7 +47,9 @@ class App extends Component {
           <h3> Available Rooms</h3>
           <RoomList firebase= { firebase } activeRoom={this.state.activeRoom}
           setActiveRoom={(room) => this.setActiveRoom(room)}/>
-          <MessageList firebase={ firebase } activeRoom={this.state.activeRoom}/>
+          <MessageList firebase={ firebase } activeRoom={this.state.activeRoom}
+          setUser={(user) => this.setUser(user)} user={ this.state.user}
+          />
 
         </div>
       </div>
